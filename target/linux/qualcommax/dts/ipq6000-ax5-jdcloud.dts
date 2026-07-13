@@ -27,3 +27,18 @@
 	qcom,ath11k-fw-memory-mode = <1>;
 	qcom,ath11k-calibration-variant = "Redmi-AX5-JDCloud";
 };
+&partitions {
+	/* 这里的节点名称需要和 ipq6000-xiaomi.dtsi 里的完全一致 */
+	partition@kernel {
+		label = "kernel";
+		reg = <0x00c00000 0x00c00000>; /* 起始偏移保持原样，大小改为 12MB (0x00c00000) */
+	};
+
+	partition@rootfs {
+		label = "rootfs";
+		/* ！！！致命警告 ！！！ */
+		/* rootfs 的起始地址（第一参数）必须顺延紧接 kernel 的结束地址 */
+		/* 由于增加了 6MB，起始地址要向后推移 0x00600000，且 rootfs 的大小（第二参数）必须减少 0x00600000 */
+		reg = <0x01800000 0x02800000>; 
+	};
+};
