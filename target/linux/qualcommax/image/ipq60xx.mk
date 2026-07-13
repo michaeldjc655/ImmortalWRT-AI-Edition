@@ -431,6 +431,7 @@ define Device/redmi_ax5-jdcloud
 	$(call Device/emmc-common)
 	DEVICE_VENDOR := Redmi
 	DEVICE_MODEL := AX5 JDCloud
+    KERNEL_SIZE := 12288k
 	SOC := ipq6000
 	DEVICE_DTS_CONFIG := config@cp03-c1
 	DEVICE_PACKAGES := ipq-wifi-redmi_ax5-jdcloud
